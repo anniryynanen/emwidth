@@ -1,31 +1,26 @@
 <script>
-import Empty from "./Empty.vue";
 import Page from "./Page.vue";
+import SelectFolder from "./SelectFolder.vue";
 
 export default {
     components: {
-        Empty,
-        Page
+        Page,
+        SelectFolder
     },
     data() {
         return {
-            path: undefined
+            saveFolder: undefined
         };
     },
     methods: {
-        save(path) {
-            if (!path) // Dialog was cancelled
-                return;
-
-            this.path = path;
-        },
-        load() {
+        selectFolder(path) {
+            this.saveFolder = path;
         }
     }
 }
 </script>
 
 <template>
-  <Empty v-if="!path" @save="save" @load="load"/>
+  <SelectFolder v-if="!saveFolder" @selectFolder="selectFolder"/>
   <Page v-else/>
 </template>
